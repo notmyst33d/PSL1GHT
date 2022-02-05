@@ -179,7 +179,7 @@ SECTIONS
 	.toc1		  : ALIGN(8) { *(.toc1) }
 	.opd		  : ALIGN(8) { KEEP (*(.opd)) }
 	.branch_lt	  : ALIGN(8) { *(.branch_lt) }
-	.got		  : ALIGN(8) { *(.got .toc) }
+	.got		  : ALIGN(256) { *(.got .toc) }
 	.toc.sceStub  : { KEEP (*(.toc.sceStub)) KEEP (*(SORT(.toc.sceStub.*))) }
 	
 	/* Thread Local Storage sections  */
