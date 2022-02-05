@@ -38,7 +38,7 @@ ifneq (,$(findstring Darwin,$(UNAME)))
 	OSXCFLAGS	:= -mmacosx-version-min=$(OSX_MIN)
 	OSXCXXFLAGS	:=	$(OSXCFLAGS)
 	CXXFLAGS	+=	-fvisibility=hidden
-	CFLAGS	+= -I/usr/local/include -I/usr/local/opt/libelf/include/libelf -I/usr/local/opt/openssl/include
+	CFLAGS	+= -I/usr/local/include -I/usr/local/opt/libelf/include/libelf -I/usr/local/opt/openssl/include -I/opt/local/include
 	LDFLAGS		+= -mmacosx-version-min=$(OSX_MIN) -Wl,-syslibroot,$(SDK) -L/opt/local/lib -L/usr/local/opt/openssl/lib -lgmp -lcrypto -lz
 endif
 
