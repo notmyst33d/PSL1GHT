@@ -65,11 +65,13 @@ ifneq (,$(findstring Darwin,$(UNAME)))
 	OSXCXXFLAGS	:= $(OSXCFLAGS)
 	CXXFLAGS	+= -fvisibility=hidden
 	LDFLAGS += -mmacosx-version-min=$(OSX_MIN) -Wl,-syslibroot,$(SDK)
+	CGTOOLKIT	:= ./cg-installer.sh
 endif
 
 ifneq (,$(findstring Linux,$(UNAME)))
 	LDFLAGS += -ldl -lpthread
 	OS := Linux
+	CGTOOLKIT	:= ./cg-installer.sh
 endif
 
 CXXFLAGS        += -std=c++11
