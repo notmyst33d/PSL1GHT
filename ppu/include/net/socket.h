@@ -11,7 +11,7 @@ struct sockaddr
 {
 	u8 sa_len;
 	sa_family_t sa_family;
-	char sa_data[];
+	char sa_data[14];
 };
 
 struct iovec
