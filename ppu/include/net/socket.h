@@ -91,6 +91,7 @@ struct linger
 #define PF_INET6 AF_INET6
 
 #define SOCKET_FD_MASK 0x40000000
+#define SOCKET_FD(socket) ((socket) & ~SOCKET_FD_MASK)
 
 #ifdef __cplusplus
 extern "C" {
