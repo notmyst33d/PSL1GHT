@@ -32,6 +32,7 @@
 #define IN_MULTICAST(i)      IN_CLASSD(i)
 
 #define INADDR_ANY           0x00000000
+#undef INADDR_LOOPBACK
 #define INADDR_LOOPBACK      0x7F000001
 #define INADDR_BROADCAST     0xFFFFFFFF
 #define INADDR_NONE          0xFFFFFFFF
@@ -40,7 +41,7 @@
 
 #define INET_ADDRSTRLEN      16
 
-#define IP_OPTIONS           1 
+#define IP_OPTIONS           1
 #define IP_HDRINCL           2
 #define IP_TOS               3
 #define IP_TTL               4
