@@ -5,12 +5,12 @@ echo "Installing Cg library in $PS3DEV/bin"
 
 case `uname -s` in
 	'Linux')
-		wget http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_x86_64.tgz -O Cg-3.1_April2012_x86_64.tar
-		tar xf Cg-3.1_April2012_x86_64.tar usr/lib64/libCg.so
+		wget http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_x86_64.tgz -O Cg-3.1_April2012_x86_64.tgz
+		tar xzf Cg-3.1_April2012_x86_64.tgz ./usr/lib64/libCg.so
 		mkdir -p $PS3DEV/bin
 		mv usr/lib64/libCg.so $PS3DEV/bin/
 		chmod 644 $PS3DEV/bin/libCg.so
-		rm -f Cg-3.1_April2012_x86_64.tar
+		rm -f Cg-3.1_April2012_x86_64.tgz
 		rm -rf usr
 	;;
 	'Darwin')
