@@ -14,6 +14,7 @@
 
 #if !defined(WIN32)
 #include <dlfcn.h>
+#include <limits.h>
 #endif
 
 #define PROG_TYPE_NONE			0
@@ -80,13 +81,20 @@ static bool InitCompiler()
 {
 #if defined(WIN32)
 	HMODULE libcgc=LoadLibrary("cg.dll");
-#elif defined(__APPLE__)
-    void *libcgc=dlopen("Cg", RTLD_LAZY);
 #else
-    void *libcgc=dlopen("libCg.so", RTLD_LAZY);
+	char path[PATH_MAX];
+	char *env = getenv("PSL1GHT");
+	if (env==NULL)
+		return false;
+#if defined(__APPLE__)
+	sprintf(path, "%s/bin/%s", env, "Cg");
+#else
+	sprintf(path, "%s/bin/%s", env, "libCg.so");
 #endif
-
-    if (libcgc==NULL) return false;
+	void *libcgc=dlopen(path, RTLD_LAZY);
+#endif
+	if (libcgc==NULL)
+		return false;
 
 #ifdef WIN32
 	cgCreateContext=(_cgCreateContext)GetProcAddress(libcgc,"cgCreateContext");
