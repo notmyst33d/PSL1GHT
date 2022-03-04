@@ -51,7 +51,7 @@ struct _options
 	false,
 	false
 };
- 
+
 #define CG_SOURCE				4112
 #define CG_COMPILED_PROGRAM		4106
 #define CG_PROFILE_VP30			6148
@@ -95,20 +95,20 @@ static bool InitCompiler()
 	cgGetProgramString=(_cgGetProgramString)GetProcAddress(libcgc,"cgGetProgramString");
 	cgGetLastListing=(_cgGetLastListing)GetProcAddress(libcgc,"cgGetLastListing");
 #else
-    cgCreateContext=(_cgCreateContext)dlsym(libcgc, "cgCreateContext");
-    cgDestroyContext=(_cgDestroyContext)dlsym(libcgc, "cgDestroyContext");
-    cgCreateProgramFromFile=(_cgCreateProgramFromFile)dlsym(libcgc, "cgCreateProgramFromFile");
-    cgGetProgramString=(_cgGetProgramString)dlsym(libcgc, "cgGetProgramString");
-    cgGetLastListing=(_cgGetLastListing)dlsym(libcgc, "cgGetLastListing");
+	cgCreateContext=(_cgCreateContext)dlsym(libcgc, "cgCreateContext");
+	cgDestroyContext=(_cgDestroyContext)dlsym(libcgc, "cgDestroyContext");
+	cgCreateProgramFromFile=(_cgCreateProgramFromFile)dlsym(libcgc, "cgCreateProgramFromFile");
+	cgGetProgramString=(_cgGetProgramString)dlsym(libcgc, "cgGetProgramString");
+	cgGetLastListing=(_cgGetLastListing)dlsym(libcgc, "cgGetLastListing");
 #endif
 
-    return (cgCreateContext!=NULL);
+	return (cgCreateContext!=NULL);
 }
 
 static u32 endian_fp(u32 v)
 {
-  return ( ( ( v >> 16 ) & 0xffff ) << 0 ) |
-         ( ( ( v >> 0 ) & 0xffff ) << 16 );
+	return ( ( ( v >> 16 ) & 0xffff ) << 0 ) |
+	       ( ( ( v >> 0 ) & 0xffff ) << 16 );
 }
 
 void usage()
@@ -151,10 +151,10 @@ void readoptions(struct _options *options,int argc,char *argv[])
 	options->src_file = argv[i];
 	options->dst_file = argv[i+1];
 
-#ifdef __CYGWIN__		//workaround to solve full path file source problem with cgywin & cg.dll
+#ifdef __CYGWIN__ //workaround to solve full path file source problem with cygwin & cg.dll
 	if (options->src_file == NULL || options->dst_file == NULL)
-			return;
-	if (options->src_file[0] == '/') {		
+		return;
+	if (options->src_file[0] == '/') {
 		getcwd(currdir, sizeof(currdir));
 		char *fname, *path;
 		if (options->dst_file[0] != '/') {
@@ -163,10 +163,10 @@ void readoptions(struct _options *options,int argc,char *argv[])
 		}
 		fname = basename((char *)options->src_file);
 		path = (char *)dirname((char *)options->src_file);
-		chdir(path);	
+		chdir(path);
 		options->src_file = fname;
 	}
-#endif	
+#endif
 }
 
 char* readfile(const char *filename)
@@ -287,7 +287,7 @@ int compileVP()
 		vp->input_mask = SWAP32(compiler.GetInputMask());
 		vp->output_mask = SWAP32(compiler.GetOutputMask());
 
-		while(lastoff&3) 
+		while(lastoff&3)
 			vertexprogram[lastoff++] = 0;
 
 		rsxProgramAttrib *attribs = (rsxProgramAttrib*)(vertexprogram + lastoff);
@@ -348,7 +348,7 @@ int compileVP()
 			if(!it->name.empty() && !it->is_internal) {
 				const char *name = it->name.c_str();
 				int off = lastoff;
-				while(*name) 
+				while(*name)
 					vertexprogram[lastoff++] = *name++;
 				vertexprogram[lastoff++] = 0;
 				*((u32*)(vertexprogram + it->user)) = SWAP32(off);
@@ -524,7 +524,7 @@ int compileFP()
 			if(!it->name.empty() && !it->is_internal) {
 				const char *name = it->name.c_str();
 				int off = lastoff;
-				while(*name) 
+				while(*name)
 					fragmentprogram[lastoff++] = *name++;
 				fragmentprogram[lastoff++] = 0;
 				*((u32*)(fragmentprogram + it->user)) = SWAP32(off);
@@ -562,10 +562,10 @@ int main(int argc,char *argv[])
 	readoptions(&Options,argc,argv);
 
 	if(Options.gen_asm!=true && !InitCompiler()) {
-        fprintf(stderr, "Unable to load Cg, aborting.\n");
-        fprintf(stderr, "Please install Cg toolkit and/or set the path (i.e. LD_LIBRARY_PATH) to the shared library accordingly.\n");
-        return EXIT_FAILURE;
-    }
+		fprintf(stderr, "Unable to load Cg, aborting.\n");
+		fprintf(stderr, "Please install Cg toolkit and/or set the path (i.e. LD_LIBRARY_PATH) to the shared library accordingly.\n");
+		return EXIT_FAILURE;
+	}
 
 	switch(Options.prog_type) {
 		case PROG_TYPE_VP:
