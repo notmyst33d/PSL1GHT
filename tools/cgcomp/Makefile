@@ -61,8 +61,8 @@ endif
 ifneq (,$(findstring Darwin,$(UNAME)))
 	SDK		:= $(shell xcrun --show-sdk-path)
 	OSX_MIN		:= $(shell defaults read $(shell xcrun --show-sdk-platform-path 2> /dev/null)/Info MinimumSDKVersion 2> /dev/null || xcrun --show-sdk-version 2> /dev/null || echo 10.4)
-	OSXCFLAGS	:= -mmacosx-version-min=$(OSX_MIN)
-	OSXCXXFLAGS	:= $(OSXCFLAGS)
+	OSXCFLAGS	:= -mmacosx-version-min=$(OSX_MIN) -arch x86_64
+	OSXCXXFLAGS	:= $(OSXCFLAGS) -arch x86_64
 	CXXFLAGS	+= -fvisibility=hidden
 	LDFLAGS += -mmacosx-version-min=$(OSX_MIN) -Wl,-syslibroot,$(SDK)
 	CGTOOLKIT	:= ./cg-installer.sh
