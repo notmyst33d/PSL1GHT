@@ -64,7 +64,7 @@ ifneq (,$(findstring Darwin,$(UNAME)))
 	OSXCFLAGS	:= -mmacosx-version-min=$(OSX_MIN) -arch x86_64
 	OSXCXXFLAGS	:= $(OSXCFLAGS) -arch x86_64
 	CXXFLAGS	+= -fvisibility=hidden
-	LDFLAGS += -mmacosx-version-min=$(OSX_MIN) -Wl,-syslibroot,$(SDK)
+	LDFLAGS += -mmacosx-version-min=$(OSX_MIN) -Wl,-syslibroot,$(SDK) -arch x86_64
 	CGTOOLKIT	:= ./cg-installer.sh
 endif
 
