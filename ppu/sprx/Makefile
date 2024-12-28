@@ -16,7 +16,9 @@ all:
 	@$(MAKE) -C libhttputil --no-print-directory
 	@$(MAKE) -C libsysfs --no-print-directory
 	@$(MAKE) -C libsysutil --no-print-directory
+	@$(MAKE) -C libsysutil_avconf_ext --no-print-directory
 	@$(MAKE) -C libsysmodule --no-print-directory
+	@$(MAKE) -C libadec --no-print-directory
 	@$(MAKE) -C libvdec --no-print-directory
 	@$(MAKE) -C libusb --no-print-directory
 	@$(MAKE) -C libspurs --no-print-directory
@@ -41,7 +43,9 @@ install:
 	@$(MAKE) -C libhttputil install --no-print-directory
 	@$(MAKE) -C libsysfs install --no-print-directory
 	@$(MAKE) -C libsysutil install --no-print-directory
+	@$(MAKE) -C libsysutil_avconf_ext install --no-print-directory
 	@$(MAKE) -C libsysmodule install --no-print-directory
+	@$(MAKE) -C libadec install --no-print-directory
 	@$(MAKE) -C libvdec install --no-print-directory
 	@$(MAKE) -C libusb install --no-print-directory
 	@$(MAKE) -C libspurs install --no-print-directory
@@ -66,7 +70,9 @@ clean:
 	@$(MAKE) -C libhttputil clean --no-print-directory
 	@$(MAKE) -C libsysfs clean --no-print-directory
 	@$(MAKE) -C libsysutil clean --no-print-directory
+	@$(MAKE) -C libsysutil_avconf_ext clean --no-print-directory
 	@$(MAKE) -C libsysmodule clean --no-print-directory
+	@$(MAKE) -C libadec clean --no-print-directory
 	@$(MAKE) -C libvdec clean --no-print-directory
 	@$(MAKE) -C libusb clean --no-print-directory
 	@$(MAKE) -C libspurs  clean --no-print-directory
