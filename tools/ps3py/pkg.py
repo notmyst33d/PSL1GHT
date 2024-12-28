@@ -483,7 +483,8 @@ def pack(folder, contentid, outname=None):
 			
 			dataToEncrypt += b'\0' * (((file.fileSize + 0x0F) & ~0x0F) - len(fileData))
 	header.dataSize = len(dataToEncrypt)
-	metaBlock.dataSize 	= header.dataSize
+	metaBlock.unk34 = (header.dataSize >> 32) & 0xffff
+	metaBlock.dataSize = header.dataSize & 0xffffffff
 	header.packageSize = header.dataSize + 0x1A0
 	head = header.pack()
 	qadigest.update(head)
